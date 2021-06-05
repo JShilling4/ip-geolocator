@@ -57,7 +57,14 @@ export default {
 				// enable run-time checks when not in production
 				dev: !production,
 			},
-			preprocess: autoPreprocess(),
+			preprocess: autoPreprocess({
+				scss: {
+                    prependData: `
+                        @import "src/scss/_variables.scss";
+                        @import "src/scss/_mixins.scss";
+                    `,
+				},
+			}),
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
