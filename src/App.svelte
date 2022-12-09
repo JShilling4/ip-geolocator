@@ -90,14 +90,12 @@
 <main>
 	<header>
 		<h1>IP Address Locator</h1>
-
 		<div class="search-wrapper">
 			<input type="text" placeholder="Search for IP address by domain" bind:value={searchInput} on:keypress={onKeyPress} />
 			<button on:click={getIP}>
 				<FontIcon icon={faChevronRight} color="#fff" size=".8x" class="searchIcon" />
 			</button>
 		</div>
-
 		<div class="results-container">
 			<div class="resultBox ipAddress">
 				<h2 class="heading">IP Address</h2>
@@ -143,7 +141,6 @@
 			</div>
 		</div>
 	</header>
-
 	<div id="map" />
 </main>
 

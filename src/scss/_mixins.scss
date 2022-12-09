@@ -1,42 +1,42 @@
 @mixin hardware-acceleration() {
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000;
-    -moz-perspective: 1000;
-    -ms-perspective: 1000;
-    perspective: 1000;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
 }
 
 @mixin breakpoint($point) {
-    @if $point == wide {
-        @media (max-width: 1400px) {
-            @content;
-        }
-    } @else if $point == laptop {
-        @media (max-width: 1200px) {
-            @content;
-        }
-    } @else if $point == tablet {
-        @media (max-width: 1024px) {
-            @content;
-        }
-    } @else if $point == tablet-small {
-        @media (max-width: 768px) {
-            @content;
-        }
-    } @else if $point == phablet {
-        @media (max-width: 556px) {
-            @content;
-        }
-    } @else if $point == phone {
-        @media (max-width: 430px) {
-            @content;
-        }
-    } @else if $point == phone-small {
-        @media (max-width: 375px) {
-            @content;
-        }
+  @if $point == wide {
+    @media (max-width: 1400px) {
+      @content;
     }
+  } @else if $point == laptop {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  } @else if $point == tablet {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $point == tablet-small {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $point == phablet {
+    @media (max-width: 556px) {
+      @content;
+    }
+  } @else if $point == phone {
+    @media (max-width: 430px) {
+      @content;
+    }
+  } @else if $point == phone-small {
+    @media (max-width: 375px) {
+      @content;
+    }
+  }
 }
