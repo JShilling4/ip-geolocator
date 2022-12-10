@@ -1,4 +1,4 @@
-# IP Address Tracker
+# IP Address Geolocator
 
 ## Get started
 
