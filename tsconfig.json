@@ -1,0 +1,11 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "include": ["src/**/*", "node_modules/*"],
+  "exclude": ["node_modules/*", "public/*"],
+  "compilerOptions": {
+    "target": "ES2021",
+    "sourceMap": true,
+    "types": ["mapbox-gl"],
+    "moduleResolution": "Node"
+  }
+}

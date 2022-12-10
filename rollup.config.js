@@ -31,7 +31,6 @@ function serve() {
           shell: true,
         }
       );
-
       process.on("SIGTERM", toExit);
       process.on("exit", toExit);
     },
@@ -39,7 +38,7 @@ function serve() {
 }
 
 export default {
-  input: "src/main.js",
+  input: "src/main.ts",
   output: {
     sourcemap: true,
     format: "iife",
@@ -47,15 +46,21 @@ export default {
     file: "public/build/bundle.js",
   },
   plugins: [
+    // If you have external dependencies installed from
+    // npm, you'll most likely need these plugins. In
+    // some cases you'll need additional configuration -
+    // consult the documentation for details:
+
     // handle env variables
     replace({
-      __myapp: JSON.stringify({
+      globalThis: JSON.stringify({
         env: {
           isProd: production,
           API_KEY_IPIFY: JSON.stringify(process.env.API_KEY_IPIFY),
           API_KEY_MAPBOX: JSON.stringify(process.env.API_KEY_MAPBOX),
         },
       }),
+      preventAssignment: true,
     }),
     svelte({
       compilerOptions: {
@@ -63,6 +68,7 @@ export default {
         dev: !production,
       },
       preprocess: autoPreprocess({
+        // make scss files global
         scss: {
           prependData: `
 						@import "src/scss/_mixins.scss";
@@ -73,26 +79,18 @@ export default {
     // we'll extract any component CSS out into
     // a separate file - better for performance
     css({ output: "bundle.css" }),
-
-    // If you have external dependencies installed from
-    // npm, you'll most likely need these plugins. In
-    // some cases you'll need additional configuration -
-    // consult the documentation for details:
-    // https://github.com/rollup/plugins/tree/master/packages/commonjs
     resolve({
       browser: true,
       dedupe: ["svelte"],
     }),
+    // https://github.com/rollup/plugins/tree/master/packages/commonjs
     commonjs(),
-
     // In dev mode, call `npm run start` once
     // the bundle has been generated
     !production && serve(),
-
     // Watch the `public` directory and refresh the
     // browser on changes when not in production
     !production && livereload("public"),
-
     // If we're building for production (npm run build
     // instead of npm run dev), minify
     production && terser(),
